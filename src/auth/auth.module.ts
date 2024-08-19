@@ -28,7 +28,6 @@ import { JwtModule } from '@nestjs/jwt';
 import { JwtStrategy } from './jwt.strategy';
 // import { ConfigService } from '@nestjs/config';
 
-
 // const configService = new ConfigService();
 // console.log('JWT_SECRET:', configService.get<string>('JWT_SECRET'));
 
@@ -37,12 +36,16 @@ import { JwtStrategy } from './jwt.strategy';
     UsersModule,
     JwtModule.register({
       secret: (() => {
+        
         const jwtSecret = process.env.JWT_SECRET;
         console.log('JWT_SECRET:', jwtSecret); // Logging JWT_SECRET
         return jwtSecret;
       })(),
       signOptions: {
         expiresIn: (() => {
+
+          
+
           const jwtExpiration = process.env.JWT_EXPIRATION;
           console.log('JWT_EXPIRATION:', jwtExpiration); // Logging JWT_EXPIRATION
           return jwtExpiration;
